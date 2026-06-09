@@ -1,12 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#0F172A"/>
-  <g transform="translate(8 14) scale(1.0)">
-    <rect x="0" y="4" width="28" height="20" rx="2" fill="#F28C28"/>
-    <rect x="28" y="8" width="14" height="16" rx="1" fill="#e67e22"/>
-    <polygon points="28,8 42,8 42,12 28,12" fill="#F28C28"/>
-    <circle cx="8" cy="26" r="5" fill="#0F172A" stroke="#F28C28" stroke-width="1.6"/>
-    <circle cx="34" cy="26" r="5" fill="#0F172A" stroke="#F28C28" stroke-width="1.6"/>
-    <circle cx="8" cy="26" r="1.8" fill="#F28C28"/>
-    <circle cx="34" cy="26" r="1.8" fill="#F28C28"/>
-  </g>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@700&amp;display=swap');</style>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#F97316"/>
+  <text x="32" y="44" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="700" font-size="28" fill="white" letter-spacing="-0.5">LT</text>
 </svg>
