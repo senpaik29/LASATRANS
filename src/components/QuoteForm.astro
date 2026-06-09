@@ -104,7 +104,13 @@ const thanksPath = lang === "cs" ? "/thank-you/" : "/en/thank-you/";
               id="pickup_from"
               name="pickup_from"
               class="w-full border border-outline-variant rounded-xl focus:ring-primary focus:border-primary px-md py-sm"
-              type="date"
+              type="text"
+              inputmode="numeric"
+              placeholder={t("quote.form.datePlaceholder")}
+              pattern="\d{2}/\d{2}/\d{4}"
+              maxlength="10"
+              autocomplete="off"
+              data-date-input
             />
           </div>
           <div>
@@ -113,7 +119,13 @@ const thanksPath = lang === "cs" ? "/thank-you/" : "/en/thank-you/";
               id="pickup_to"
               name="pickup_to"
               class="w-full border border-outline-variant rounded-xl focus:ring-primary focus:border-primary px-md py-sm"
-              type="date"
+              type="text"
+              inputmode="numeric"
+              placeholder={t("quote.form.datePlaceholder")}
+              pattern="\d{2}/\d{2}/\d{4}"
+              maxlength="10"
+              autocomplete="off"
+              data-date-input
             />
           </div>
         </div>
@@ -162,6 +174,19 @@ const thanksPath = lang === "cs" ? "/thank-you/" : "/en/thank-you/";
   const form = document.getElementById("quote-form") as HTMLFormElement | null;
   const errorEl = document.getElementById("quote-error");
   const submitBtn = document.getElementById("quote-submit") as HTMLButtonElement | null;
+
+  document.querySelectorAll<HTMLInputElement>("input[data-date-input]").forEach((el) => {
+    el.addEventListener("input", () => {
+      const digits = el.value.replace(/\D/g, "").slice(0, 8);
+      let v = digits;
+      if (digits.length >= 5) {
+        v = `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+      } else if (digits.length >= 3) {
+        v = `${digits.slice(0, 2)}/${digits.slice(2)}`;
+      }
+      el.value = v;
+    });
+  });
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
