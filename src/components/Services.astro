@@ -1,22 +1,27 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const services = [
   {
-    title: "FTL / LTL перевозки",
-    text: "Комплектные и сборные грузы с оптимальным использованием пространства.",
-    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
-    alt: "Погрузка груза",
+    title: t("services.s1.title"),
+    text: t("services.s1.text"),
+    img: "/assets/images/service-ftl.jpg",
+    alt: t("services.s1.alt"),
   },
   {
-    title: "Экспедирование",
-    text: "Сопровождение груза, документы и выбор оптимального маршрута.",
-    img: "https://images.unsplash.com/photo-1494412574642-6c4c967ad360?auto=format&fit=crop&w=800&q=80",
-    alt: "Логистический офис",
+    title: t("services.s2.title"),
+    text: t("services.s2.text"),
+    img: "/assets/images/service-expedition.jpg",
+    alt: t("services.s2.alt"),
   },
   {
-    title: "Экспресс доставка",
-    text: "Срочные рейсы и приоритетная обработка для критичных поставок.",
-    img: "https://images.unsplash.com/photo-1601584111127-372ecc9a8aef?auto=format&fit=crop&w=800&q=80",
-    alt: "Экспресс доставка",
+    title: t("services.s3.title"),
+    text: t("services.s3.text"),
+    img: "/assets/images/service-express.jpg",
+    alt: t("services.s3.alt"),
   },
 ];
 ---
@@ -24,7 +29,7 @@ const services = [
 <section class="py-xl" id="services">
   <div class="max-w-container-max mx-auto px-md md:px-lg">
     <h2 class="font-headline-lg text-headline-lg text-slate-deep mb-lg text-center">
-      Наши услуги
+      {t("services.title")}
     </h2>
     <div class="grid md:grid-cols-3 gap-lg">
       {
@@ -35,6 +40,7 @@ const services = [
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 alt={s.alt}
                 src={s.img}
+                loading="lazy"
               />
             </div>
             <div class="p-lg space-y-md">

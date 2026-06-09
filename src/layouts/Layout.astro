@@ -1,37 +1,38 @@
 ---
 import "../styles/global.css";
+import { getLangFromUrl, useTranslations, altLang, altLangPath } from "../i18n/utils";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = "Lasa Trans - Перевозка грузов по ЧР и ЕС",
-  description = "Lasa Trans s.r.o. — международные грузоперевозки по Чехии и Европе. FTL, LTL, экспресс доставка, экспедирование. Надежно, быстро, прозрачно.",
-} = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const other = altLang(lang);
+const otherPath = altLangPath(lang);
 
+const { title = t("site.title"), description = t("site.description") } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const altURL = new URL(otherPath, Astro.site).toString();
 ---
 
 <!doctype html>
-<html class="scroll-smooth" lang="ru">
+<html class="scroll-smooth" lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta
-      name="keywords"
-      content="грузоперевозки, логистика, Чехия, Европа, FTL, LTL, экспедирование, транспорт, Lasa Trans"
-    />
+    <meta name="keywords" content={t("site.keywords")} />
     <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content="Lasa Trans - Перевозка грузов по ЧР и ЕС" />
-    <meta
-      property="og:description"
-      content="Ваш надежный партнер в мире логистики. Безопасность, скорость и прозрачность на каждом этапе доставки."
-    />
+    <link rel="alternate" hreflang={lang} href={canonicalURL} />
+    <link rel="alternate" hreflang={other} href={altURL} />
+    <link rel="alternate" hreflang="x-default" href={new URL("/", Astro.site).toString()} />
+    <meta property="og:title" content={t("site.ogTitle")} />
+    <meta property="og:description" content={t("site.ogDescription")} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={lang === "cs" ? "cs_CZ" : "en_US"} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
@@ -6,9 +10,9 @@
 >
   <div class="absolute inset-0 z-0">
     <img
-      alt="Грузовик на трассе"
+      alt={t("hero.imageAlt")}
       class="w-full h-full object-cover opacity-40"
-      src="https://images.unsplash.com/photo-1618582948377-cd7eb0e8cb14?auto=format&fit=crop&w=1920&q=80"
+      src="/assets/images/hero-truck.jpg"
     />
     <div class="absolute inset-0 bg-gradient-to-r from-slate-deep via-slate-deep/80 to-transparent"></div>
   </div>
@@ -18,40 +22,39 @@
         class="inline-flex items-center gap-xs px-sm py-1 bg-action-orange/20 border border-action-orange/30 rounded-full text-action-orange font-label-md"
       >
         <span class="w-2 h-2 rounded-full bg-action-orange animate-pulse"></span>
-        Международная логистика
+        {t("hero.badge")}
       </div>
       <h1 class="font-display-lg text-display-lg leading-tight">
-        Перевозка грузов <br /> по <span class="text-action-orange">ЧР и ЕС</span>
+        {t("hero.title1")} <br /> <span class="text-action-orange">{t("hero.title2")}</span>
       </h1>
       <p class="font-body-lg text-body-lg text-surface-variant max-w-xl">
-        Ваш надежный партнер в мире логистики. Безопасность, скорость и прозрачность на
-        каждом этапе доставки.
+        {t("hero.subtitle")}
       </p>
       <div class="flex flex-wrap gap-md">
         <a
           class="px-lg py-sm bg-action-orange text-white rounded-xl font-bold hover:scale-105 transition-transform flex items-center gap-xs"
           href="#quote"
         >
-          Запросить стоимость
+          {t("hero.ctaQuote")}
           <span class="material-symbols-outlined">arrow_forward</span>
         </a>
         <a
           class="px-lg py-sm border border-surface-variant text-white rounded-xl font-bold hover:bg-surface-white/10 transition-colors"
-          href="#services">Наши услуги</a
+          href="#services">{t("hero.ctaServices")}</a
         >
       </div>
       <div class="grid grid-cols-3 gap-md pt-lg border-t border-surface-variant/20">
         <div>
           <div class="font-headline-md text-headline-md text-action-orange">24/7</div>
-          <div class="font-label-sm text-label-sm opacity-70">Поддержка</div>
+          <div class="font-label-sm text-label-sm opacity-70">{t("hero.stat1.label")}</div>
         </div>
         <div>
           <div class="font-headline-md text-headline-md text-action-orange">8+</div>
-          <div class="font-label-sm text-label-sm opacity-70">Стран ЕС</div>
+          <div class="font-label-sm text-label-sm opacity-70">{t("hero.stat2.label")}</div>
         </div>
         <div>
           <div class="font-headline-md text-headline-md text-action-orange">100%</div>
-          <div class="font-label-sm text-label-sm opacity-70">Гарантия</div>
+          <div class="font-label-sm text-label-sm opacity-70">{t("hero.stat3.label")}</div>
         </div>
       </div>
     </div>

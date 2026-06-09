@@ -1,4 +1,9 @@
 ---
+import { getLangFromUrl, useTranslations, altLangPath, homePath } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const otherPath = altLangPath(lang);
 ---
 
 <nav
@@ -8,36 +13,54 @@
   <div
     class="flex justify-between items-center w-full px-md md:px-lg max-w-container-max mx-auto py-4"
   >
-    <a href="#" class="flex items-center gap-2">
+    <a href={homePath(lang)} class="flex items-center gap-2">
       <img src="/assets/logo.svg" alt="Lasa Trans" class="h-10 w-auto object-contain" />
     </a>
     <div class="hidden md:flex gap-md items-center">
       <a
         class="text-secondary font-medium hover:text-primary transition-colors font-label-md"
-        href="#services">Услуги</a
+        href="#services">{t("nav.services")}</a
       >
       <a
         class="text-secondary font-medium hover:text-primary transition-colors font-label-md"
-        href="#about">Регионы</a
+        href="#destinations">{t("nav.regions")}</a
       >
       <a
         class="text-secondary font-medium hover:text-primary transition-colors font-label-md"
-        href="#why-us">Почему мы</a
+        href="#why-us">{t("nav.whyUs")}</a
       >
       <a
         class="bg-primary-container text-on-primary font-bold px-sm py-xs rounded-lg hover:opacity-90 transition-all font-label-md"
-        href="#quote">Запросить цену</a
+        href="#quote">{t("nav.quote")}</a
       >
+      <a
+        href={otherPath}
+        class="ml-xs border border-outline-variant rounded-lg px-sm py-xs font-label-md text-slate-deep hover:border-primary hover:text-primary transition-colors"
+        title={t("lang.switchTitle")}
+        aria-label={t("lang.switchTitle")}
+      >
+        {t("lang.switchLabel")}
+      </a>
     </div>
-    <button
-      type="button"
-      class="md:hidden text-slate-deep"
-      id="mobile-menu-btn"
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-    >
-      <span class="material-symbols-outlined" id="menu-icon">menu</span>
-    </button>
+    <div class="md:hidden flex items-center gap-xs">
+      <a
+        href={otherPath}
+        class="border border-outline-variant rounded-lg px-xs py-1 font-label-sm text-slate-deep"
+        title={t("lang.switchTitle")}
+        aria-label={t("lang.switchTitle")}
+      >
+        {t("lang.switchLabel")}
+      </a>
+      <button
+        type="button"
+        class="text-slate-deep"
+        id="mobile-menu-btn"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span class="material-symbols-outlined" id="menu-icon">menu</span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -47,15 +70,15 @@
   aria-hidden="true"
 >
   <div class="flex justify-end p-4">
-    <button type="button" id="mobile-close-btn" class="p-2" aria-label="Закрыть меню">
+    <button type="button" id="mobile-close-btn" class="p-2" aria-label={t("nav.closeMenu")}>
       <span class="material-symbols-outlined">close</span>
     </button>
   </div>
   <nav class="flex flex-col gap-md px-lg">
-    <a class="font-label-md py-2 hover:text-action-orange" href="#services">Услуги</a>
-    <a class="font-label-md py-2 hover:text-action-orange" href="#about">Регионы</a>
-    <a class="font-label-md py-2 hover:text-action-orange" href="#why-us">Почему мы</a>
-    <a class="font-label-md py-2 text-action-orange" href="#quote">Запросить цену</a>
+    <a class="font-label-md py-2 hover:text-action-orange" href="#services">{t("nav.services")}</a>
+    <a class="font-label-md py-2 hover:text-action-orange" href="#destinations">{t("nav.regions")}</a>
+    <a class="font-label-md py-2 hover:text-action-orange" href="#why-us">{t("nav.whyUs")}</a>
+    <a class="font-label-md py-2 text-action-orange" href="#quote">{t("nav.quote")}</a>
   </nav>
 </div>
 <div id="mobile-overlay" class="fixed inset-0 z-[55] bg-black/50 hidden md:hidden" aria-hidden="true"></div>

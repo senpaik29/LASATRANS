@@ -1,4 +1,9 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const EU_COUNTRIES = [
   "BE","BG","CZ","DK","DE","EE","IE","GR","ES","FR","HR","IT","CY","LV",
   "LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE",
@@ -9,14 +14,12 @@ const EU_COUNTRIES = [
   <div class="max-w-container-max mx-auto px-md md:px-lg">
     <div class="flex flex-col md:flex-row justify-between items-end mb-lg gap-md">
       <div class="space-y-xs">
-        <h2 class="font-headline-lg text-headline-lg text-slate-deep">География перевозок</h2>
-        <p class="font-body-md text-body-md text-secondary">
-          Регулярные рейсы по востребованным направлениям Европы
-        </p>
+        <h2 class="font-headline-lg text-headline-lg text-slate-deep">{t("dest.title")}</h2>
+        <p class="font-body-md text-body-md text-secondary">{t("dest.subtitle")}</p>
       </div>
       <div class="flex gap-xs items-center">
         <span class="material-symbols-outlined text-primary">public</span>
-        <span class="font-label-md font-bold text-primary uppercase tracking-widest">EU Network</span>
+        <span class="font-label-md font-bold text-primary uppercase tracking-widest">{t("dest.networkLabel")}</span>
       </div>
     </div>
     <div id="countries-grid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-md">
@@ -27,7 +30,7 @@ const EU_COUNTRIES = [
             title={code}
           >
             <img
-              src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`}
+              src={`/assets/flags/${code.toLowerCase()}.png`}
               width="40"
               height="30"
               alt={code}

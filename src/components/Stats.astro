@@ -1,9 +1,14 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const stats = [
-  { value: "10,000+", label: "Заказов выполнено" },
-  { value: "98%", label: "Доставок в срок" },
-  { value: "500+", label: "Постоянных клиентов" },
-  { value: "6+", label: "Лет на рынке" },
+  { value: "10,000+", label: t("stats.s1.label") },
+  { value: "98%", label: t("stats.s2.label") },
+  { value: "500+", label: t("stats.s3.label") },
+  { value: "6+", label: t("stats.s4.label") },
 ];
 ---
 

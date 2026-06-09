@@ -1,32 +1,21 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const features = [
-  {
-    icon: "speed",
-    title: "Быстрая доставка",
-    text: "Оптимизированные маршруты и экспресс-решения для срочных грузов по всей Европе.",
-  },
-  {
-    icon: "schedule",
-    title: "Пунктуальность",
-    text: "Доставка минута в минуту — наш золотой стандарт.",
-  },
-  {
-    icon: "health_and_safety",
-    title: "Страхование",
-    text: "Все грузы застрахованы в соответствии с конвенцией CMR.",
-  },
-  {
-    icon: "payments",
-    title: "Гибкие тарифы",
-    text: "Индивидуальное ценообразование в зависимости от объема и регулярности поставок.",
-  },
+  { icon: "speed", title: t("whyUs.f1.title"), text: t("whyUs.f1.text") },
+  { icon: "schedule", title: t("whyUs.f2.title"), text: t("whyUs.f2.text") },
+  { icon: "health_and_safety", title: t("whyUs.f3.title"), text: t("whyUs.f3.text") },
+  { icon: "payments", title: t("whyUs.f4.title"), text: t("whyUs.f4.text") },
 ];
 ---
 
 <section class="py-xl bg-background" id="why-us">
   <div class="max-w-container-max mx-auto px-md md:px-lg">
     <div class="text-center mb-lg space-y-xs">
-      <h2 class="font-headline-lg text-headline-lg text-slate-deep">Почему выбирают нас</h2>
+      <h2 class="font-headline-lg text-headline-lg text-slate-deep">{t("whyUs.title")}</h2>
       <div class="w-20 h-1.5 bg-action-orange mx-auto rounded-full"></div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">

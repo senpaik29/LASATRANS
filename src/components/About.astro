@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="py-xl bg-surface-container-lowest" id="about">
@@ -6,28 +10,22 @@
     <div class="grid lg:grid-cols-2 gap-lg items-center">
       <div class="space-y-md">
         <h2 class="font-headline-lg text-headline-lg text-slate-deep">
-          Профессиональная логистика без границ
+          {t("about.title")}
         </h2>
-        <p class="font-body-md text-body-md text-secondary">
-          Lasa Trans s.r.o. — команда экспертов по международным грузоперевозкам. Полный
-          спектр лицензированных услуг под задачи вашего бизнеса.
-        </p>
-        <p class="font-body-md text-body-md text-secondary">
-          Автопарк соответствует европейским стандартам и обеспечивает бесперебойную
-          доставку в Чехии и по всей Европе.
-        </p>
+        <p class="font-body-md text-body-md text-secondary">{t("about.p1")}</p>
+        <p class="font-body-md text-body-md text-secondary">{t("about.p2")}</p>
         <ul class="space-y-xs">
           <li class="flex items-center gap-xs font-label-md text-slate-deep">
             <span class="material-symbols-outlined text-action-orange">check_circle</span>
-            Лицензированный международный перевозчик
+            {t("about.bullet1")}
           </li>
           <li class="flex items-center gap-xs font-label-md text-slate-deep">
             <span class="material-symbols-outlined text-action-orange">check_circle</span>
-            Современный автопарк (Euro 6)
+            {t("about.bullet2")}
           </li>
           <li class="flex items-center gap-xs font-label-md text-slate-deep">
             <span class="material-symbols-outlined text-action-orange">check_circle</span>
-            Прямые контракты без посредников
+            {t("about.bullet3")}
           </li>
         </ul>
       </div>
@@ -39,8 +37,8 @@
             class="material-symbols-outlined text-[48px] text-primary"
             style="font-variation-settings: 'FILL' 1">security</span
           >
-          <h3 class="font-headline-md text-headline-md">Безопасность</h3>
-          <p class="font-label-sm text-label-sm text-secondary">Полное страхование грузов</p>
+          <h3 class="font-headline-md text-headline-md">{t("about.card1.title")}</h3>
+          <p class="font-label-sm text-label-sm text-secondary">{t("about.card1.text")}</p>
         </div>
         <div
           class="aspect-square bg-slate-deep rounded-2xl p-lg flex flex-col justify-center items-center text-center space-y-md text-surface-white"
@@ -49,15 +47,15 @@
             class="material-symbols-outlined text-[48px] text-action-orange"
             style="font-variation-settings: 'FILL' 1">visibility</span
           >
-          <h3 class="font-headline-md text-headline-md">Прозрачность</h3>
-          <p class="font-label-sm text-label-sm opacity-80">Отслеживание в реальном времени</p>
+          <h3 class="font-headline-md text-headline-md">{t("about.card2.title")}</h3>
+          <p class="font-label-sm text-label-sm opacity-80">{t("about.card2.text")}</p>
         </div>
         <div
           class="col-span-2 bg-primary-container rounded-2xl p-lg flex items-center justify-between text-on-primary-container"
         >
           <div class="space-y-xs">
-            <h3 class="font-headline-md text-headline-md">Надежность</h3>
-            <p class="font-body-md text-body-md">99% доставок точно в срок</p>
+            <h3 class="font-headline-md text-headline-md">{t("about.card3.title")}</h3>
+            <p class="font-body-md text-body-md">{t("about.card3.text")}</p>
           </div>
           <span class="material-symbols-outlined text-[64px] opacity-20">handshake</span>
         </div>
