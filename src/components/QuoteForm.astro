@@ -108,7 +108,7 @@ const thanksPath = lang === "cs" ? "/thank-you/" : "/en/thank-you/";
                 type="text"
                 inputmode="numeric"
                 placeholder={t("quote.form.datePlaceholder")}
-                pattern="\d{2}/\d{2}/\d{4}"
+                pattern={"\\d{2}/\\d{2}/\\d{4}"}
                 maxlength="10"
                 autocomplete="off"
                 data-date-input
@@ -134,7 +134,7 @@ const thanksPath = lang === "cs" ? "/thank-you/" : "/en/thank-you/";
                 type="text"
                 inputmode="numeric"
                 placeholder={t("quote.form.datePlaceholder")}
-                pattern="\d{2}/\d{2}/\d{4}"
+                pattern={"\\d{2}/\\d{2}/\\d{4}"}
                 maxlength="10"
                 autocomplete="off"
                 data-date-input
