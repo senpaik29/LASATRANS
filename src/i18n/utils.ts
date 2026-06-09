@@ -25,3 +25,7 @@ export function altLangPath(lang: Lang): string {
 export function altLang(lang: Lang): Lang {
   return lang === "cs" ? "en" : "cs";
 }
+
+export function flagCodeForLang(lang: Lang): string {
+  return lang === "cs" ? "cz" : "gb";
+}

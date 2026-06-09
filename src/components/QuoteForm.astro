@@ -4,9 +4,7 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? "https://lasatrans.cz";
 const thanksPath = lang === "cs" ? "/thank-you/" : "/en/thank-you/";
-const nextUrl = `${siteOrigin}${thanksPath}`;
 ---
 
 <section class="py-xl bg-slate-deep text-surface-white" id="quote">
@@ -39,14 +37,14 @@ const nextUrl = `${siteOrigin}${thanksPath}`;
       <form
         class="bg-surface-white p-lg rounded-3xl text-on-surface space-y-md"
         id="quote-form"
-        action="https://formsubmit.co/lasatrans2026@gmail.com"
+        action="https://formsubmit.co/ajax/lasatrans2026@gmail.com"
         method="POST"
+        data-thanks-url={thanksPath}
       >
         <input type="hidden" name="_subject" value={t("quote.form.subject")} />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_language" value={lang} />
-        <input type="hidden" name="_next" value={nextUrl} />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
@@ -99,6 +97,26 @@ const nextUrl = `${siteOrigin}${thanksPath}`;
             </select>
           </div>
         </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+          <div>
+            <label class="block font-label-md mb-xs" for="pickup_from">{t("quote.form.pickupFrom")}</label>
+            <input
+              id="pickup_from"
+              name="pickup_from"
+              class="w-full border border-outline-variant rounded-xl focus:ring-primary focus:border-primary px-md py-sm"
+              type="date"
+            />
+          </div>
+          <div>
+            <label class="block font-label-md mb-xs" for="pickup_to">{t("quote.form.pickupTo")}</label>
+            <input
+              id="pickup_to"
+              name="pickup_to"
+              class="w-full border border-outline-variant rounded-xl focus:ring-primary focus:border-primary px-md py-sm"
+              type="date"
+            />
+          </div>
+        </div>
         <div>
           <label class="block font-label-md mb-xs" for="route">{t("quote.form.route")}</label>
           <input
@@ -119,12 +137,19 @@ const nextUrl = `${siteOrigin}${thanksPath}`;
             rows="3"></textarea>
         </div>
         <button
-          class="w-full py-md bg-action-orange text-white font-bold rounded-xl hover:bg-opacity-90 transition-all flex justify-center items-center gap-xs"
+          class="w-full py-md bg-action-orange text-white font-bold rounded-xl hover:bg-opacity-90 transition-all flex justify-center items-center gap-xs disabled:opacity-60"
           type="submit"
+          id="quote-submit"
         >
-          {t("quote.form.submit")}
+          <span>{t("quote.form.submit")}</span>
           <span class="material-symbols-outlined">send</span>
         </button>
+        <p
+          id="quote-error"
+          class="hidden font-label-md text-center text-red-700 bg-red-50 border border-red-200 rounded-xl py-sm"
+        >
+          {t("quote.form.error")}
+        </p>
         <p class="font-label-sm text-secondary text-center">
           {t("quote.form.privacy")}
         </p>
@@ -132,3 +157,36 @@ const nextUrl = `${siteOrigin}${thanksPath}`;
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById("quote-form") as HTMLFormElement | null;
+  const errorEl = document.getElementById("quote-error");
+  const submitBtn = document.getElementById("quote-submit") as HTMLButtonElement | null;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form || !submitBtn) return;
+
+    const thanksUrl = form.dataset.thanksUrl ?? "/thank-you/";
+    errorEl?.classList.add("hidden");
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && (data.success === "true" || data.success === true)) {
+        window.location.href = thanksUrl;
+        return;
+      }
+      errorEl?.classList.remove("hidden");
+    } catch {
+      errorEl?.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>

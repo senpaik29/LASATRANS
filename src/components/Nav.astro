@@ -1,9 +1,11 @@
 ---
-import { getLangFromUrl, useTranslations, altLangPath, homePath } from "../i18n/utils";
+import { getLangFromUrl, useTranslations, altLangPath, homePath, altLang, flagCodeForLang } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const otherPath = altLangPath(lang);
+const otherLang = altLang(lang);
+const otherFlag = flagCodeForLang(otherLang);
 ---
 
 <nav
@@ -35,20 +37,34 @@ const otherPath = altLangPath(lang);
       >
       <a
         href={otherPath}
-        class="ml-xs border border-outline-variant rounded-lg px-sm py-xs font-label-md text-slate-deep hover:border-primary hover:text-primary transition-colors"
+        class="ml-xs inline-flex items-center gap-xs border border-outline-variant rounded-lg px-sm py-xs font-label-md text-slate-deep hover:border-primary hover:text-primary transition-colors"
         title={t("lang.switchTitle")}
         aria-label={t("lang.switchTitle")}
       >
+        <img
+          src={`/assets/flags/${otherFlag}.png`}
+          width="20"
+          height="14"
+          alt=""
+          class="rounded-[2px] object-cover shadow-sm"
+        />
         {t("lang.switchLabel")}
       </a>
     </div>
     <div class="md:hidden flex items-center gap-xs">
       <a
         href={otherPath}
-        class="border border-outline-variant rounded-lg px-xs py-1 font-label-sm text-slate-deep"
+        class="inline-flex items-center gap-1 border border-outline-variant rounded-lg px-xs py-1 font-label-sm text-slate-deep"
         title={t("lang.switchTitle")}
         aria-label={t("lang.switchTitle")}
       >
+        <img
+          src={`/assets/flags/${otherFlag}.png`}
+          width="18"
+          height="12"
+          alt=""
+          class="rounded-[2px] object-cover shadow-sm"
+        />
         {t("lang.switchLabel")}
       </a>
       <button
