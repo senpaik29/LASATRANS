@@ -1,0 +1,49 @@
+---
+const services = [
+  {
+    title: "FTL / LTL перевозки",
+    text: "Комплектные и сборные грузы с оптимальным использованием пространства.",
+    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+    alt: "Погрузка груза",
+  },
+  {
+    title: "Экспедирование",
+    text: "Сопровождение груза, документы и выбор оптимального маршрута.",
+    img: "https://images.unsplash.com/photo-1494412574642-6c4c967ad360?auto=format&fit=crop&w=800&q=80",
+    alt: "Логистический офис",
+  },
+  {
+    title: "Экспресс доставка",
+    text: "Срочные рейсы и приоритетная обработка для критичных поставок.",
+    img: "https://images.unsplash.com/photo-1601584111127-372ecc9a8aef?auto=format&fit=crop&w=800&q=80",
+    alt: "Экспресс доставка",
+  },
+];
+---
+
+<section class="py-xl" id="services">
+  <div class="max-w-container-max mx-auto px-md md:px-lg">
+    <h2 class="font-headline-lg text-headline-lg text-slate-deep mb-lg text-center">
+      Наши услуги
+    </h2>
+    <div class="grid md:grid-cols-3 gap-lg">
+      {
+        services.map((s) => (
+          <article class="group bg-surface-white rounded-2xl overflow-hidden border border-outline-variant shadow-sm hover:shadow-lg transition-all">
+            <div class="h-48 bg-slate-deep overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                alt={s.alt}
+                src={s.img}
+              />
+            </div>
+            <div class="p-lg space-y-md">
+              <h3 class="font-headline-md text-headline-md text-slate-deep">{s.title}</h3>
+              <p class="font-body-md text-body-md text-secondary">{s.text}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

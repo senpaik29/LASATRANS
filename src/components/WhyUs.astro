@@ -1,0 +1,46 @@
+---
+const features = [
+  {
+    icon: "speed",
+    title: "Быстрая доставка",
+    text: "Оптимизированные маршруты и экспресс-решения для срочных грузов по всей Европе.",
+  },
+  {
+    icon: "schedule",
+    title: "Пунктуальность",
+    text: "Доставка минута в минуту — наш золотой стандарт.",
+  },
+  {
+    icon: "health_and_safety",
+    title: "Страхование",
+    text: "Все грузы застрахованы в соответствии с конвенцией CMR.",
+  },
+  {
+    icon: "payments",
+    title: "Гибкие тарифы",
+    text: "Индивидуальное ценообразование в зависимости от объема и регулярности поставок.",
+  },
+];
+---
+
+<section class="py-xl bg-background" id="why-us">
+  <div class="max-w-container-max mx-auto px-md md:px-lg">
+    <div class="text-center mb-lg space-y-xs">
+      <h2 class="font-headline-lg text-headline-lg text-slate-deep">Почему выбирают нас</h2>
+      <div class="w-20 h-1.5 bg-action-orange mx-auto rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+      {
+        features.map((f) => (
+          <div class="bg-surface-white p-lg rounded-2xl border border-outline-variant card-hover transition-all space-y-md">
+            <div class="w-12 h-12 bg-primary-container/10 rounded-xl flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">{f.icon}</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md">{f.title}</h3>
+            <p class="font-body-md text-body-md text-secondary">{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

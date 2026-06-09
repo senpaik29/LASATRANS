@@ -1,0 +1,99 @@
+---
+---
+
+<nav
+  class="sticky top-0 z-50 bg-surface-white/90 backdrop-blur-md border-b border-outline-variant shadow-sm transition-all duration-300"
+  id="main-nav"
+>
+  <div
+    class="flex justify-between items-center w-full px-md md:px-lg max-w-container-max mx-auto py-4"
+  >
+    <a href="#" class="flex items-center gap-2">
+      <img src="/assets/logo.svg" alt="Lasa Trans" class="h-10 w-auto object-contain" />
+    </a>
+    <div class="hidden md:flex gap-md items-center">
+      <a
+        class="text-secondary font-medium hover:text-primary transition-colors font-label-md"
+        href="#services">Услуги</a
+      >
+      <a
+        class="text-secondary font-medium hover:text-primary transition-colors font-label-md"
+        href="#about">Регионы</a
+      >
+      <a
+        class="text-secondary font-medium hover:text-primary transition-colors font-label-md"
+        href="#why-us">Почему мы</a
+      >
+      <a
+        class="bg-primary-container text-on-primary font-bold px-sm py-xs rounded-lg hover:opacity-90 transition-all font-label-md"
+        href="#quote">Запросить цену</a
+      >
+    </div>
+    <button
+      type="button"
+      class="md:hidden text-slate-deep"
+      id="mobile-menu-btn"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="material-symbols-outlined" id="menu-icon">menu</span>
+    </button>
+  </div>
+</nav>
+
+<div
+  id="mobile-nav"
+  class="fixed inset-y-0 right-0 z-[60] w-72 bg-slate-deep text-surface-white shadow-2xl transition-transform duration-300 md:hidden"
+  aria-hidden="true"
+>
+  <div class="flex justify-end p-4">
+    <button type="button" id="mobile-close-btn" class="p-2" aria-label="Закрыть меню">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-md px-lg">
+    <a class="font-label-md py-2 hover:text-action-orange" href="#services">Услуги</a>
+    <a class="font-label-md py-2 hover:text-action-orange" href="#about">Регионы</a>
+    <a class="font-label-md py-2 hover:text-action-orange" href="#why-us">Почему мы</a>
+    <a class="font-label-md py-2 text-action-orange" href="#quote">Запросить цену</a>
+  </nav>
+</div>
+<div id="mobile-overlay" class="fixed inset-0 z-[55] bg-black/50 hidden md:hidden" aria-hidden="true"></div>
+
+<script>
+  const nav = document.getElementById("main-nav");
+  window.addEventListener("scroll", () => {
+    if (!nav) return;
+    if (window.scrollY > 50) {
+      nav.classList.add("shadow-lg");
+      nav.classList.remove("py-4");
+      nav.classList.add("py-2");
+    } else {
+      nav.classList.remove("shadow-lg", "py-2");
+      nav.classList.add("py-4");
+    }
+  });
+
+  const mobileNav = document.getElementById("mobile-nav");
+  const overlay = document.getElementById("mobile-overlay");
+  const menuBtn = document.getElementById("mobile-menu-btn");
+  const closeBtn = document.getElementById("mobile-close-btn");
+  const menuIcon = document.getElementById("menu-icon");
+
+  function setMobileOpen(open: boolean) {
+    if (!mobileNav || !overlay || !menuBtn || !menuIcon) return;
+    mobileNav.classList.toggle("open", open);
+    overlay.classList.toggle("hidden", !open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    mobileNav.setAttribute("aria-hidden", String(!open));
+    menuIcon.textContent = open ? "close" : "menu";
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+
+  menuBtn?.addEventListener("click", () => setMobileOpen(true));
+  closeBtn?.addEventListener("click", () => setMobileOpen(false));
+  overlay?.addEventListener("click", () => setMobileOpen(false));
+  mobileNav?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => setMobileOpen(false))
+  );
+</script>
