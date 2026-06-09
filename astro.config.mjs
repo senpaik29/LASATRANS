@@ -4,5 +4,8 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://lasatrans.cz",
-  integrations: [tailwind({ applyBaseStyles: false }), sitemap()],
+  integrations: [
+    tailwind({ applyBaseStyles: false }),
+    sitemap({ filter: (page) => !page.includes("/thank-you") }),
+  ],
 });

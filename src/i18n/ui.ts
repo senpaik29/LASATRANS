@@ -143,6 +143,11 @@ export const ui = {
 
     "lang.switchLabel": "EN",
     "lang.switchTitle": "Switch to English",
+
+    "thanks.pageTitle": "Děkujeme — Lasa Trans",
+    "thanks.title": "Děkujeme za Vaši poptávku!",
+    "thanks.body": "Náš zaměstnanec Vás brzy bude kontaktovat.",
+    "thanks.backHome": "Zpět na hlavní stránku",
   },
   en: {
     "site.title": "Lasa Trans — International freight transport across CZ and EU",
@@ -283,6 +288,11 @@ export const ui = {
 
     "lang.switchLabel": "CS",
     "lang.switchTitle": "Přepnout do češtiny",
+
+    "thanks.pageTitle": "Thank you — Lasa Trans",
+    "thanks.title": "Thank you for your enquiry!",
+    "thanks.body": "Our specialist will contact you shortly.",
+    "thanks.backHome": "Return to the homepage",
   },
 } as const;
 

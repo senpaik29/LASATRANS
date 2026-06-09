@@ -1,0 +1,43 @@
+---
+import { getLangFromUrl, useTranslations, homePath } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section
+  class="min-h-[80vh] flex items-center justify-center bg-slate-deep text-surface-white relative overflow-hidden"
+>
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-slate-deep via-slate-deep to-primary/20 opacity-90"
+  ></div>
+  <div
+    class="relative z-10 max-w-2xl mx-auto px-md md:px-lg py-xl text-center space-y-lg"
+  >
+    <div
+      class="w-24 h-24 mx-auto rounded-full bg-action-orange/20 border-2 border-action-orange flex items-center justify-center"
+    >
+      <span
+        class="material-symbols-outlined text-action-orange text-[56px]"
+        style="font-variation-settings: 'FILL' 1"
+      >
+        check_circle
+      </span>
+    </div>
+    <h1 class="font-display-lg text-display-lg leading-tight">
+      {t("thanks.title")}
+    </h1>
+    <p class="font-body-lg text-body-lg text-surface-variant">
+      {t("thanks.body")}
+    </p>
+    <div class="pt-md">
+      <a
+        href={homePath(lang)}
+        class="inline-flex items-center gap-xs px-lg py-sm bg-action-orange text-white rounded-xl font-bold hover:scale-105 transition-transform"
+      >
+        <span class="material-symbols-outlined">arrow_back</span>
+        {t("thanks.backHome")}
+      </a>
+    </div>
+  </div>
+</section>

@@ -5,6 +5,7 @@ import { getLangFromUrl, useTranslations, altLang, altLangPath } from "../i18n/u
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -12,7 +13,7 @@ const t = useTranslations(lang);
 const other = altLang(lang);
 const otherPath = altLangPath(lang);
 
-const { title = t("site.title"), description = t("site.description") } = Astro.props;
+const { title = t("site.title"), description = t("site.description"), noindex = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const altURL = new URL(otherPath, Astro.site).toString();
 ---
@@ -24,6 +25,7 @@ const altURL = new URL(otherPath, Astro.site).toString();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="keywords" content={t("site.keywords")} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={lang} href={canonicalURL} />
     <link rel="alternate" hreflang={other} href={altURL} />
